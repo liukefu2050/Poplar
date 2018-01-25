@@ -39,10 +39,10 @@ public class IndexTest {
 		//
 		event.setId(2);
 		eventIndexService.add(event);
-		List<Event> events = eventIndexService.findByTitleOrContent("创建索引");
+		List<Integer> events = eventIndexService.findByTitleOrContent("创建索引");
 		if(events != null && events.size() !=0) {
-			for(Event e : events) {
-				System.out.println(e.getId());
+			for(Integer e : events) {
+				System.out.println(e);
 			}
 		}
 		

@@ -136,5 +136,10 @@ public class CipherUtil {
 		int d2 = n%16;
 		return hexDigits[d1] + hexDigits[d2];
 	}
-	
+
+
+	public static void main(String args[]){
+		String password ="demo123456";
+		System.out.print(CipherUtil.generatePassword(password));
+	}
 }

@@ -196,6 +196,7 @@ var RegisterPage = React.createClass({
       //<View style={styles.container}>
         <Modal
           animationType={"slide"}
+          onRequestClose={this.cancle}
           transparent={this.state.transparent}
           visible={this.props.modalVisible}>
 
