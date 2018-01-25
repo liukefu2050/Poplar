@@ -39,7 +39,7 @@ public class LoginRequiredInterceptor implements HandlerInterceptor{
 		
 		System.out.println("login required inter:"+req.getRequestURL());
 		
-		HttpSession session = req.getSession();		
+		HttpSession session = req.getSession();
 		
 		User user = (User) session.getAttribute("user");
 		if(user == null){
