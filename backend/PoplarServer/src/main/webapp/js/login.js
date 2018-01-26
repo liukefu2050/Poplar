@@ -14,7 +14,46 @@ $(document).ready(function(){
 		$('#email').parent('div.field:first').removeClass('error');
 		$('#password').parent('div.field:first').removeClass('error');
 
-		$.ajax({
+        $.post(basePath+'/account/login',{user_email: email,user_pwd: password},function(data) {
+            $(that).removeClass('loading');
+            if(data.status==SUCCESS_ACCOUNT_LOGIN){
+                //self.location = basePath + '/';
+                location.reload();
+            } else{
+
+                if(data.status == ERROR_EMAIL_NOT_REG){
+                    err_msg="账户不存在";
+                    $('#emailTip').text('账户不存在');
+                    $('#email').parent('div.field:first').addClass('error');
+                } else if(data.status == ERROR_EMAIL_EMPTY){
+                    err_msg="请输入邮箱";
+                    $('#emailTip').text('请输入邮箱');
+                    $('#email').parent('div.field:first').addClass('error');
+                } else if(data.status == ERROR_EMAIL_FORMAT){
+                    err_msg="请输入正确的邮箱地址";
+                    $('#emailTip').text('请输入正确的邮箱地址');
+                    $('#email').parent('div.field:first').addClass('error');
+                } else if(data.status == ERROR_PWD_EMPTY){
+                    err_msg="请输入密码";
+                    $('#paswordTip').text('请输入密码');
+                    $('#password').parent('div.field:first').addClass('error');
+                } else if(data.status == ERROR_PWD_DIFF){
+                    err_msg = "密码错误"
+                    $('#paswordTip').text('密码错误');
+                    $('#password').parent('div.field:first').addClass('error');
+                } else{
+                    err_msg="邮箱或密码错误";
+                    $('#paswordTip').text('邮箱或密码错误');
+                    $('#password').parent('div.field:first').addClass('error');
+                }
+                var msg=$('<li>'+err_msg+'</li>')
+                $(error_area).find('ul:first').prepend($(msg));
+                $(error_area).text(err_msg);
+                $(error_area).removeClass('hidden');
+            }
+
+        })
+/*		$.ajax({
 			url: basePath+'/account/login',
 			type: 'POST',
 			dataType: 'json',
@@ -66,7 +105,7 @@ $(document).ready(function(){
 		})
 		.always(function() {
 			console.log("complete");
-		});
+		});*/
 		
 	});
 

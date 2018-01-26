@@ -27,7 +27,7 @@ public class AccountAPI {
 
 	@ResponseBody
 	@RequestMapping(value="/check/email/", method=RequestMethod.POST)
-	public Map<String, String> isEmailExist(@RequestBody User u){
+	public Map<String, String> isEmailExist(User u){
 
 		System.out.println("email :" +u.getUser_email());
 		Map<String, String> map = new HashMap<String, String>() ;
@@ -42,7 +42,7 @@ public class AccountAPI {
 	
 	@ResponseBody
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public Map<String, Object> login(@RequestBody User user) {
+	public Map<String, Object> login(User user) {
 		
 		Map<String, Object> ret = userService.login(user.getUser_email(), user.getUser_pwd());
 		String status = (String) ret.get("status");
@@ -67,7 +67,7 @@ public class AccountAPI {
 	
 	@ResponseBody
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public Map<String, String> register(@RequestBody User user) {
+	public Map<String, String> register(User user) {
 		System.out.println("resister....");
 		Map<String, String> map = new HashMap<String, String>();
 		String status = userService.register(user.getUser_name(), user.getUser_email(), user.getUser_pwd(), user.getUser_cfm_pwd(), map);

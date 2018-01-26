@@ -64,7 +64,7 @@ public class CommentAPI {
 	
 	@ResponseBody
 	@RequestMapping(value="/create", method=RequestMethod.POST)	
-	public Map<String, Object> createComment(@RequestBody Comment comment,
+	public Map<String, Object> createComment(Comment comment,
 											 @RequestAttribute("uid") Integer id) {
 		User user = (User)userService.findById(id);
 		User comment_parent_author = new User();

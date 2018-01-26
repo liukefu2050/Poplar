@@ -140,7 +140,7 @@ public class TimeLineAPI {
 	
 	@ResponseBody
 	@RequestMapping("/new")
-	public Map<String, Object> newFeed(@RequestAttribute("uid") Integer id, @RequestBody String params) throws UnsupportedEncodingException {
+	public Map<String, Object> newFeed(@RequestAttribute("uid") Integer id, String params) throws UnsupportedEncodingException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String _params = URLDecoder.decode(params,"utf-8");
